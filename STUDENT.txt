@@ -1,1 +1,1 @@
-APP_URL=https://muhammadhaerul25.github.io/rootfacts-ai
+APP_URL=https://endearing-sunburst-3dea8b.netlify.app
