@@ -1,0 +1,1 @@
+APP_URL=https://rad-genie-9dd07d.netlify.app

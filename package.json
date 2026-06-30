@@ -1,0 +1,14 @@
+{
+  "name": "rootfacts-ai",
+  "version": "1.0.0",
+  "description": "RootFacts - Vegetable Detection App with TensorFlow.js and Transformers.js",
+  "main": "index.html",
+  "type": "module",
+  "scripts": {
+    "lint": "eslint .",
+    "lint:fix": "eslint . --fix"
+  },
+  "devDependencies": {
+    "eslint": "^9.39.4"
+  }
+}
