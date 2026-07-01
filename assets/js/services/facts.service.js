@@ -1,11 +1,13 @@
 import { logError } from '../core/utils.js';
 
-// Tone persona prompt prefixes for dynamic persona feature
+// Tone persona prompt prefixes for dynamic persona feature.
+// Each prefix explicitly scopes the output to vegetable-related content
+// (health benefits, nutrition, culinary uses) to prevent off-topic responses.
 const TONE_PROMPTS = {
-	normal: 'Write a short, informative fun fact about',
-	funny: 'Write a short, funny and humorous fun fact about',
-	professional: 'Write a short, formal and scientifically accurate fun fact about',
-	casual: 'Write a short, friendly and casual fun fact about'
+	normal: 'Write a short, informative fun fact about the health benefits or nutritional value of the vegetable',
+	funny: 'Write a short, funny and humorous fun fact about the culinary uses or surprising health benefits of the vegetable',
+	professional: 'Write a short, formal and scientifically accurate fun fact about the nutritional compounds or health benefits of the vegetable',
+	casual: 'Write a short, friendly and casual fun fact about the delicious uses or health benefits of the vegetable'
 };
 
 class FunFactService {
@@ -98,8 +100,9 @@ class FunFactService {
 		const tonePrefix = TONE_PROMPTS[tone] || TONE_PROMPTS.normal;
 		// The prompt is passed directly to text2text-generation.
 		// The model outputs ONLY the generated content — NOT a repetition of the prompt.
-		// This guarantees the fun fact always describes the correct detected vegetable.
-		const prompt = `${tonePrefix} ${sanitized}. Make it informative and interesting. Keep it under 3 sentences.`;
+		// The explicit scope phrase ("health benefits / nutritional value of the vegetable")
+		// combined with the vegetable name ensures the model stays on-topic.
+		const prompt = `${tonePrefix} called "${sanitized}". Focus only on its nutritional content, health benefits, or culinary uses. Do not include information unrelated to this vegetable. Keep it under 3 sentences.`;
 
 		this.isGenerating = true;
 
